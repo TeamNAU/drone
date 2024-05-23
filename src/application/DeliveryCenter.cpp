@@ -28,6 +28,6 @@ bool DeliveryCenter::getOrder(double lat, double lon)
         return false;
     }
     double flyTime = flightTime(dist2target);
-    printf("delivery distance: %f", dist2target);
-    printf("delivery time: %f", flyTime);
+    printf("delivery distance: %f\n", dist2target);
+    printf("delivery time: %d\n", (int)flyTime);
 }
