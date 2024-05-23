@@ -1,22 +1,14 @@
 #include "Drone.h"
+#include "DeliveryCenter.h"
 #include <stdio.h>
 
 int main()
 {
-    Drone d;
-    d.flyStart();
-    for (int minutes = 0; minutes < 140; minutes++)
-    {
-        printf("\tminute: %d\n", minutes);
-        if(d.getBatteryLevel() == 10)
-            d.flyFinish();
-        if(d.isFly())
-        {
-            d.info();
-            d.fly();
-        }
-        else 
-            d.Charge();
-    }
+    DeliveryCenter dc(2);
+
+    // 50.44053359846769, 30.429290808550714
+    // 50.446142907512304, 30.45123831744762
+    // 1700m
+    dc.getOrder(50.446142907512304, 30.45123831744762);
     return 0;
 }

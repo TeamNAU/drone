@@ -9,11 +9,13 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 set(SOURCES_MNGR
     ../middeleware/
     Drone.cpp
+    DeliveryCenter.cpp
     main.cpp
 )
 
 include_directories(BEFORE
                     $(CMAKE_CURRENT_SOURCE_DIR)
+                    $(CMAKE_CURRENT_SOURCE_DIR)/../middeleware
                     $(CMAKE_CURRENT_SOURCE_DIR)/../middeleware/Logger
                     $(CMAKE_CURRENT_SOURCE_DIR)/../middeleware/Battery)
 

@@ -11,7 +11,7 @@ public:
     bool LowLevel();
     int getBatteryLevel();
     bool needBatteryCharge();
-    void flyStart();
+    bool flyStart();
     void flyFinish();
     void fly();
     bool isFly();
