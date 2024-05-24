@@ -24,10 +24,11 @@ bool DeliveryCenter::getOrder(double lat, double lon)
     double dist2target = dis(50.44053359846769, 30.429290808550714, lat, lon);
     if (dist2target > coverageDistance)
     {
-        printf("The ordering point is too far away (%.2f > %.2f). Delivery is not possible.", dist2target, (float)coverageDistance);
+        printf("The ordering point is too far away (%.2f > %.2f). Delivery is not possible.\n", dist2target, (float)coverageDistance);
         return false;
     }
     double flyTime = flightTime(dist2target);
     printf("delivery distance: %f\n", dist2target);
     printf("delivery time: %d\n", (int)flyTime);
+    return true;
 }

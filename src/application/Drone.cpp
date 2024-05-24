@@ -1,7 +1,7 @@
 #include "Drone.h"
 #include <stdio.h>
 
-Drone::Drone(/* args */)
+Drone::Drone(/* args */) : needCharge(false)
 {
     Battery.setBatteryLevel(100);
 }
@@ -35,7 +35,6 @@ bool Drone::needBatteryCharge()
 
 bool Drone::flyStart()
 {
-    inFlight = true;
     if (LowLevel())
     {
         printf("Flight is not possible. Please charge drone\n");
@@ -45,6 +44,7 @@ bool Drone::flyStart()
     printf("Flight start\n");
     info();
     Battery.setBatteryLevel(Battery.getBatteryLevel() - BATTERY_USE_PER_MINUTE);
+    inFlight = true;
     return true;
 }
 
