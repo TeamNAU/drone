@@ -27,15 +27,15 @@ void TestDrone()
     ASSERT_EQUAL(d.getBatteryLevel(), 100);
     ASSERT_EQUAL(d.LowLevel(), false);
     ASSERT_EQUAL(d.needBatteryCharge(), false);
-    ASSERT_EQUAL(d.flyStart(), true);
-    ASSERT_EQUAL(d.isFly(), true);
+    ASSERT_EQUAL(d.deliveryStart(), true);
+    ASSERT_EQUAL(d.isDelivery(), true);
     for(int i = 0; i < 90; i++)
-        d.fly();
-    d.flyFinish();
+        d.delivery();
+    d.deliveryFinish();
     ASSERT_EQUAL(d.getBatteryLevel(), 9);
     ASSERT_EQUAL(d.LowLevel(), true);
-    ASSERT_EQUAL(d.isFly(), false);
-    ASSERT_EQUAL(d.flyStart(), false);
+    ASSERT_EQUAL(d.isDelivery(), false);
+    ASSERT_EQUAL(d.deliveryStart(), false);
     ASSERT_EQUAL(d.needBatteryCharge(), true);
     for(int i = 0; i < 24; i++)
         d.Charge();
@@ -48,13 +48,18 @@ void TestDeliveryCenter()
     DeliveryCenter dc(1);
     // double baseLat=50.44053359846769;
     // double baseLon=30.429290808550714;
-    double orderLat=50.446142907512304;
-    double orderLon=30.45123831744762;
-    ASSERT_EQUAL(dc.getOrder(orderLat, orderLon), true);
+    double w = 123.1;
+    LocationData ld;
+    ld.lat=50.446142907512304;
+    ld.lon=30.45123831744762;
+    Format f;
+    f._height=45;
+    f._width=67;
+    ASSERT_EQUAL(dc.getOrder(Package(w, ld, f)), true);
     // 50.08754251560169, 30.3204470926092
-    orderLat=50.08754251560169;
-    orderLon=30.3204470926092;
-    ASSERT_EQUAL(dc.getOrder(orderLat, orderLon), false);
+    ld.lat=50.08754251560169;
+    ld.lon=30.3204470926092;
+    ASSERT_EQUAL(dc.getOrder(Package(w, ld, f)), false);
 }
 
 int main() 

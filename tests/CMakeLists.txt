@@ -11,6 +11,7 @@ set(APP_SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/middeleware/Logger/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/application/Drone.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/application/DeliveryCenter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/application/UserInterface.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 
 
