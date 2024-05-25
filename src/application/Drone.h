@@ -16,9 +16,12 @@ public:
     void delivery();
     bool isDelivery();
     void info();
+    int getDistanceAfterStartDelivery();
+    int getTimeAfterStartDelivery();
 
 private:
     Battery Battery;
     bool needCharge;
     bool inDelivery;
+    int distanceAfterStart;
 };

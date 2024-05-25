@@ -29,8 +29,11 @@ void TestDrone()
     ASSERT_EQUAL(d.needBatteryCharge(), false);
     ASSERT_EQUAL(d.deliveryStart(), true);
     ASSERT_EQUAL(d.isDelivery(), true);
-    for(int i = 0; i < 90; i++)
+    int deliveryTime = 90;
+    for(int i = 0; i < deliveryTime; i++)
         d.delivery();
+    ASSERT_EQUAL(d.getDistanceAfterStartDelivery(), (deliveryTime * DRONE_MAXIMUX_SPEED_M_MIN));
+    ASSERT_EQUAL(d.getTimeAfterStartDelivery(), deliveryTime);
     d.deliveryFinish();
     ASSERT_EQUAL(d.getBatteryLevel(), 9);
     ASSERT_EQUAL(d.LowLevel(), true);

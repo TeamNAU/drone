@@ -4,6 +4,7 @@
 Drone::Drone(/* args */) : needCharge(false)
 {
     Battery.setBatteryLevel(100);
+    distanceAfterStart = 0;
 }
 
 Drone::~Drone()
@@ -41,8 +42,9 @@ bool Drone::deliveryStart()
         needCharge = true;
         return false;
     }
-    printf("Delivery start\n");
+    printf("\t\t----Delivery start----\n");
     info();
+    distanceAfterStart = 0;
     Battery.setBatteryLevel(Battery.getBatteryLevel() - BATTERY_USE_PER_MINUTE);
     inDelivery = true;
     return true;
@@ -56,12 +58,18 @@ void Drone::deliveryFinish()
         printf("Please charge drone\n");
         needCharge = true;
     }
-    printf("Delivery finish\n");
+    printf("\t\t----Delivery finish----\n");
+    printf("\tDistance: %d m\n", getDistanceAfterStartDelivery());
+    printf("\tTime: %d minutes\n", getTimeAfterStartDelivery());
 }
 
 void Drone::delivery()
 {
     Battery.setBatteryLevel(Battery.getBatteryLevel() - BATTERY_USE_PER_MINUTE);
+    distanceAfterStart = distanceAfterStart + DRONE_MAXIMUX_SPEED_M_MIN;
+    printf("\n\tDelivery in process...\n");
+    printf("Distance after start: %d m\n", getDistanceAfterStartDelivery());
+    printf("Time after start: %d minutes\n", getTimeAfterStartDelivery());
 }
 
 bool Drone::isDelivery()
@@ -79,4 +87,14 @@ void Drone::info()
     printf("\tPossible delivery time: %d minutes\n", deliveryTime);
     printf("\tReserv delivery distance: %d m\n", RESERV_DELIVERY_DISTANCE);
     printf("\tReserv delivery time: %d minutes\n", RESERV_DELIVERY_TIME);
+}
+
+int Drone::getDistanceAfterStartDelivery()
+{
+    return distanceAfterStart;
+}
+
+int Drone::getTimeAfterStartDelivery()
+{
+    return (distanceAfterStart / DRONE_MAXIMUX_SPEED_M_MIN) * BATTERY_USE_PER_MINUTE;
 }
