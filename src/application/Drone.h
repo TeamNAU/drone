@@ -11,14 +11,14 @@ public:
     bool LowLevel();
     int getBatteryLevel();
     bool needBatteryCharge();
-    bool flyStart();
-    void flyFinish();
-    void fly();
-    bool isFly();
+    bool deliveryStart();
+    void deliveryFinish();
+    void delivery();
+    bool isDelivery();
     void info();
 
 private:
     Battery Battery;
     bool needCharge;
-    bool inFlight;
+    bool inDelivery;
 };

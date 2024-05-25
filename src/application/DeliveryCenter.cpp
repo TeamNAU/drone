@@ -19,9 +19,9 @@ DeliveryCenter::~DeliveryCenter()
     delete[] drones;
 }
 
-bool DeliveryCenter::getOrder(double lat, double lon)
+bool DeliveryCenter::getOrder(Package package)
 {
-    double dist2target = dis(50.44053359846769, 30.429290808550714, lat, lon);
+    double dist2target = dis(baseLat, baseLon, package._location.lat, package._location.lon);
     if (dist2target > coverageDistance)
     {
         printf("The ordering point is too far away (%.2f > %.2f). Delivery is not possible.\n", dist2target, (float)coverageDistance);
@@ -30,5 +30,18 @@ bool DeliveryCenter::getOrder(double lat, double lon)
     double flyTime = flightTime(dist2target);
     printf("delivery distance: %f\n", dist2target);
     printf("delivery time: %d\n", (int)flyTime);
+    printf("\t----Package Info----\n");
+    printf("Weight: %lf\n", package._weight);
+    printf("Height: %d\n", package._format._height);
+    printf("Width: %d\n", package._format._width);
     return true;
+}
+
+void DeliveryCenter::createOrder()
+{
+    double weight = UI.setWeight();
+    LocationData locData = UI.setCoordinates();
+    Format format = UI.setFormat();
+
+    UI.isOrderAccepted(getOrder(Package(weight, locData, format)));    
 }

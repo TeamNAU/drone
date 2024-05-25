@@ -10,6 +10,7 @@ set(SOURCES_MNGR
     ../middeleware/
     Drone.cpp
     DeliveryCenter.cpp
+    UserInterface.cpp
     main.cpp
 )
 

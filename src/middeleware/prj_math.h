@@ -9,9 +9,12 @@
 // 1700m
 #define d2r (M_PI / 180.0)
 double inline dis(
-  double lat1, double lon1,
-  double lat2, double lon2) {
-
+  const double lat1, const double lon1,
+  const double lat2, const double lon2) {
+  // printf("b lat : %f\n", lat1);
+  // printf("b lon : %f\n", lon1);
+  // printf("o lat : %f\n", lat2);
+  // printf("o lon : %f\n", lon2);
   double dlong = (lon2 - lon1) * d2r;
   double dlat = (lat2 - lat1) * d2r;
   double a = pow(sin(dlat / 2.0), 2) + cos(lat1 * d2r) * cos(lat2 * d2r) * pow(sin(dlong / 2.0), 2);
